@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.skyworx.iso8583.ui.SelectedMessageUI">
+    <TextField fx:id="selectedMessageName" promptText="Nama Message"/>
+    <TableView fx:id="messageEditTable">
+        <columns>
+            <TableColumn prefWidth="96.14288330078125" text="Bit">
+                <cellValueFactory>
+                    <PropertyValueFactory property="bit"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="101.85711669921875" text="Value">
+                <cellValueFactory>
+                    <PropertyValueFactory property="value"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <HBox prefWidth="200.0">
+        <TextField promptText="Bit" fx:id="bitField"/>
+        <TextField fx:id="valueField" promptText="Value"/>
+        <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="Add or Save"/>
+        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="Clear"/>
+    </HBox>
+</VBox>
