@@ -3,6 +3,8 @@ package com.skyworx.iso8583.domain;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.jpos.iso.ISOMsg;
 import org.mapdb.HTreeMap;
 import org.mapdb.Serializer;
@@ -19,7 +21,7 @@ public class Message implements Serializable{
     public static final HTreeMap<UUID,String> COLLECTION = db.hashMap(COLLECTION_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
     private UUID id;
     private StringProperty name = new SimpleStringProperty();
-    private List<BitMessage> bits = new ArrayList<>();
+    private ObservableList<BitMessage> bits = FXCollections.observableArrayList();
     private StringProperty mti = new SimpleStringProperty();
     private static final ObjectMapper om = new ObjectMapper();
 
@@ -102,7 +104,11 @@ public class Message implements Serializable{
     }
 
     public void setBits(List<BitMessage> bits) {
-        this.bits = bits;
+        this.bits = FXCollections.observableArrayList(bits);
+    }
+
+    public ObservableList<BitMessage> bits(){
+        return bits;
     }
 
     public ISOMsg toIso() {

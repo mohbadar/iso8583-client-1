@@ -29,7 +29,7 @@
     <HBox prefWidth="200.0">
         <TextField promptText="Bit" fx:id="bitField"/>
         <TextField fx:id="valueField" promptText="Value"/>
-        <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="Add or Save"/>
-        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="Clear"/>
+        <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="+"/>
+        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="-"/>
     </HBox>
 </VBox>

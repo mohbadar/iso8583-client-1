@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOResponseListener;
@@ -27,33 +28,17 @@ import java.util.stream.IntStream;
 public class MainUI {
     private final MessageRepository messageRepository = MessageRepository.getInstance();
     public ListView<Message> messageList;
-    public TableView<Message.BitMessage> messageEditTable;
-    public ObjectProperty<Message> messageProperty = new SimpleObjectProperty<>();
-    public TextField selectedMessageName;
-    public ObjectProperty<Message.BitMessage> selectedBitMessage = new SimpleObjectProperty<>();
-    public ComboBox<Integer> listBits;
-    public TextField bitValue;
+    private ObjectProperty<Message> messageProperty = new SimpleObjectProperty<>();
     public ComboBox<String> muxList;
     public TextField newMessage;
     public TextArea consoleArea;
     public TextField newMti;
+    public VBox selectedMessageContainer;
 
     public void initialize(){
         reloadMuxList();
-        List<Integer> collect = IntStream.range(1, 128).boxed().collect(Collectors.toList());
-        listBits.setItems(FXCollections.observableList(collect));
 
-        this.selectedBitMessage.addListener((observable, oldValue, newValue) -> {
-            if(oldValue != null){
-                listBits.valueProperty().unbindBidirectional(oldValue.bitProperty());
-                bitValue.textProperty().unbindBidirectional(oldValue.valueProperty());
-            }
 
-            if(newValue != null){
-                listBits.valueProperty().bindBidirectional(newValue.bitProperty());
-                bitValue.textProperty().bindBidirectional(newValue.valueProperty());
-            }
-        });
         messageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         messageList.setItems(FXCollections.observableList(Message.findAll()));
         messageList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -61,41 +46,21 @@ public class MainUI {
         });
 
         messageProperty.addListener((observable, oldValue, newValue) -> {
-            selectedBitMessage.set(new Message.BitMessage());
-            if(oldValue != null){
-                selectedMessageName.textProperty().unbindBidirectional(oldValue.nameProperty());
-                messageEditTable.setItems(FXCollections.observableList(new ArrayList<>()));
-            }
+
             if(newValue != null){
-                selectedMessageName.textProperty().bindBidirectional(newValue.nameProperty());
-                messageEditTable.setItems(FXCollections.observableList(newValue.getBits()));
-            } else {
-                this.selectedBitMessage.set(new Message.BitMessage());
+                VBox vBox = SelectedMessageUI.create(newValue);
+                selectedMessageContainer.getChildren().clear();
+                selectedMessageContainer.getChildren().add(vBox);
             }
         });
 
-        messageEditTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectedBitMessage.set(newValue);
-        });
 
 
-    }
-
-    public void clearSelectedBitMessage(ActionEvent actionEvent) {
-        this.selectedBitMessage.set(new Message.BitMessage());
-    }
-
-    public void saveSelectedBitMessage(ActionEvent actionEvent) {
-        Message.BitMessage bitMessage = this.selectedBitMessage.get();
-        if(!messageEditTable.getItems().contains(bitMessage)){
-            messageEditTable.getItems().add(bitMessage);
-        }
     }
 
     public void saveMessage(ActionEvent actionEvent) {
         Message selectedItem = messageProperty.get();
         if(selectedItem != null){
-            selectedItem.setBits(new ArrayList<>(messageEditTable.getItems()));
             selectedItem.save();
             ObservableList<Message> items = FXCollections.observableList(this.messageList.getItems());
             this.messageList.setItems(null); //Redraw listview
