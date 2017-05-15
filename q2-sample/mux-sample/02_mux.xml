@@ -1,0 +1,11 @@
+<mux class="org.jpos.q2.iso.QMUX" logger="Q2" name="postilion">
+    <in>sample.outgoing</in>
+    <out>sample.incoming</out>
+    <ready>channel.ready</ready>
+    <request-listener class="org.jpos.iso.IncomingListener" logger="Q2"
+                      realm="incoming-listener">
+        <property name="queue" value="JPTS.TXN" />
+        <property name="ctx.STATION" value="SS_XYZ" />
+        <property name="ctx.PORT" value="1234" />
+    </request-listener>
+</mux>

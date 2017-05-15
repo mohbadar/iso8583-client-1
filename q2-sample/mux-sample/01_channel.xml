@@ -1,0 +1,16 @@
+<channel-adaptor
+        name="sample-adapter"
+        class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2">
+    <channel
+            name="channel-sample"
+            packager="org.jpos.iso.packager.ISO87APackager"
+            class="org.jpos.iso.channel.ASCIIChannel" logger="Q2">
+        <property name="timeout" value="3600000"/>
+        <property name="host" value="localhost"/>
+        <property name="port" value="10000"/>
+        <property name="keep-alive" value="true" />
+    </channel>
+    <in>sample.incoming</in>
+    <out>sample.outgoing</out>
+    <reconnect-delay>5000</reconnect-delay>
+</channel-adaptor>

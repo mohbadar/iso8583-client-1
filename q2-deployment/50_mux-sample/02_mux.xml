@@ -1,0 +1,6 @@
+<mux class="org.jpos.q2.iso.QMUX" logger="Q2" name="sample-mux">
+    <in>sample.outgoing</in>
+    <out>sample.incoming</out>
+    <ready>channel.ready</ready>
+    <property name="key" value="11" />
+</mux>

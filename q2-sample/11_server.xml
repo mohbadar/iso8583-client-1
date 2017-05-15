@@ -1,0 +1,8 @@
+<server class="org.jpos.q2.iso.QServer" logger="Q2" name="simulator_10000">
+    <attr name="port" type="java.lang.Integer">10000</attr>
+    <channel class="org.jpos.iso.channel.ASCIIChannel"
+             logger="Q2" packager="org.jpos.iso.packager.ISO87APackager">
+    </channel>
+    <request-listener class="com.skyworx.iso8583.EchoRequestListener" logger="Q2">
+    </request-listener>
+</server>

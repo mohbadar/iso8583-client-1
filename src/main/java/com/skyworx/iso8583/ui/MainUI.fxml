@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="672.0" prefWidth="735.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skyworx.iso8583.ui.MainUI">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <!-- Column 1 -->
+   <Label style="-fx-font: NORMAL 20 Tahoma;" text="ISO Message" GridPane.rowIndex="0">
+   </Label>
+   <VBox GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <children>
+         <Label text="Mux" />
+         <HBox>
+            <children>
+               <ComboBox fx:id="muxList" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+               <Button mnemonicParsing="false" onAction="#reloadMuxList" text="Reload" />
+            </children>
+         </HBox>
+         <ListView fx:id="messageList">
+   </ListView>
+         <HBox>
+            <children>
+               <TextField fx:id="newMessage" promptText="Name" />
+               <TextField promptText="MTI" fx:id="newMti" />
+               <Button mnemonicParsing="false" onAction="#addNewMessage" text="Add" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+
+   <!-- Column 2 -->
+   <Label style="-fx-font: NORMAL 20 Tahoma;" text="Message Detail" GridPane.columnIndex="1" GridPane.rowIndex="0">
+   </Label>
+   <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+         <TextField fx:id="selectedMessageName" promptText="Nama Message" />
+         <TableView fx:id="messageEditTable">
+            <columns>
+               <TableColumn prefWidth="96.14288330078125" text="Bit">
+                  <cellValueFactory>
+                     <PropertyValueFactory property="bit" />
+                  </cellValueFactory>
+               </TableColumn>
+               <TableColumn prefWidth="101.85711669921875" text="Value">
+                  <cellValueFactory>
+                     <PropertyValueFactory property="value" />
+                  </cellValueFactory>
+               </TableColumn>
+            </columns>
+         </TableView>
+         <HBox prefWidth="200.0">
+            <children>
+               <ComboBox fx:id="listBits" prefWidth="150.0" promptText="Bit" />
+               <TextField fx:id="bitValue" promptText="Value" />
+               <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="Add or Save" />
+               <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="Clear" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <ButtonBar GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <buttons>
+         <Button onAction="#removeMessage" text="Remove Message" />
+         <Button onAction="#saveMessage" text="Save Message" />
+         <Button mnemonicParsing="false" onAction="#kirimPesan" text="Kirim" />
+      </buttons>
+   </ButtonBar>
+
+   <VBox GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+      <Label text="Console" />
+      <TextArea fx:id="consoleArea" />
+   </VBox>
+   <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" />
+      <ColumnConstraints hgrow="ALWAYS" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
