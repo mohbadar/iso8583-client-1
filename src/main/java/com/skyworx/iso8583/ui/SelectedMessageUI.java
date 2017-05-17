@@ -15,14 +15,15 @@ import java.io.IOException;
 
 public class SelectedMessageUI {
 
-    private Message selectedMessage;
-    public TextField selectedMessageName;
+    public TextField messageName;
+    public TextField mtiField;
     public TableView<Message.BitMessage> messageEditTable;
     public TextField bitField;
     public TextField valueField;
+    private ObjectProperty<Message> selectedMessage = new SimpleObjectProperty<>();
     private ObjectProperty<Message.BitMessage> selectedBitMessage = new SimpleObjectProperty<>();
 
-    public static VBox create(Message selectedMessage){
+    public static VBox create(ObjectProperty<Message> selectedMessage){
         try {
             FXMLLoader loader = new FXMLLoader(SelectedMessageUI.class.getResource("SelectedMessageUI.fxml"));
             VBox box = loader.load();
@@ -34,10 +35,18 @@ public class SelectedMessageUI {
         }
     }
 
-    private void initData(Message message){
-        this.selectedMessage = message;
-        this.selectedMessageName.textProperty().bindBidirectional(this.selectedMessage.nameProperty());
-        this.messageEditTable.setItems(this.selectedMessage.bits());
+    public void bind(Message oldMessage, Message newMessage){
+        if(oldMessage != null){
+            this.messageName.textProperty().unbindBidirectional(oldMessage.nameProperty());
+            this.mtiField.textProperty().bindBidirectional(oldMessage.mtiProperty());
+        }
+
+        if(newMessage != null){
+            this.messageName.textProperty().bindBidirectional(newMessage.nameProperty());
+            this.mtiField.textProperty().bindBidirectional(newMessage.mtiProperty());
+            this.messageEditTable.setItems(newMessage.bits());
+        }
+
 
         this.selectedBitMessage.addListener((observable, oldValue, newValue) -> {
             if(oldValue != null){
@@ -54,7 +63,13 @@ public class SelectedMessageUI {
         messageEditTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedBitMessage.set(newValue);
         });
+    }
 
+    private void initData(ObjectProperty<Message> message){
+        this.selectedMessage.bindBidirectional(message);
+        this.selectedMessage.addListener((observable, oldValue, newValue) -> {
+            bind(oldValue, newValue);
+        });
     }
 
     public void clearSelectedBitMessage(ActionEvent actionEvent) {
@@ -68,4 +83,10 @@ public class SelectedMessageUI {
         }
     }
 
+    public void saveMessage(ActionEvent actionEvent) {
+        Message message = this.selectedMessage.get();
+        if (message != null) {
+            message.save();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.skyworx.iso8583.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skyworx.iso8583.EventBus;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,21 +18,42 @@ import java.util.stream.Collectors;
 import static com.skyworx.iso8583.DatabaseUtils.db;
 
 public class Message implements Serializable{
-    public static final String COLLECTION_NAME = "iso-messages";
-    public static final HTreeMap<UUID,String> COLLECTION = db.hashMap(COLLECTION_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
+    public static final String MESSAGES_NAME = "iso-messages";
+    public static final String HISTORIES_NAME = "iso-message-history";
+    public static final HTreeMap<UUID,String> MESSAGES = db.hashMap(MESSAGES_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
+    public static final HTreeMap<UUID,String> HISTORIES = db.hashMap(HISTORIES_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
     private UUID id;
     private StringProperty name = new SimpleStringProperty();
     private ObservableList<BitMessage> bits = FXCollections.observableArrayList();
     private StringProperty mti = new SimpleStringProperty();
     private static final ObjectMapper om = new ObjectMapper();
+    private String historyLabel;
+
+    public Message copy(){
+        return deserialize(this.serialize());
+    }
+
+    public void createHistory(String historyLabel){
+        Message copyOfMessage = copy();
+        try {
+            HISTORIES.put(UUID.randomUUID(), copyOfMessage.serialize());
+            db.commit();
+            EventBus.post(new MessageHistoryCreated(this));
+        }catch (Exception e){
+            db.rollback();
+            throw new RuntimeException("Unhandled Exception", e);
+        }
+    }
 
     public void save(){
         try {
             if(this.id == null){
                 this.id = UUID.randomUUID();
             }
-            COLLECTION.put(this.id, this.serialize());
+            this.setHistoryLabel(null);
+            MESSAGES.put(this.id, this.serialize());
             db.commit();
+            EventBus.post(new MessageSaved(this));
         }catch (Exception e){
             db.rollback();
             throw new RuntimeException("Unhandled Exception", e);
@@ -40,12 +62,12 @@ public class Message implements Serializable{
 
 
     public static void delete(UUID id){
-        COLLECTION.remove(id);
+        MESSAGES.remove(id);
         db.commit();
     }
 
     public static List<Message> findAll(){
-        return new ArrayList<>(COLLECTION.getValues().stream().map(Message::deserialize).collect(Collectors.toList()));
+        return new ArrayList<>(MESSAGES.getValues().stream().map(Message::deserialize).collect(Collectors.toList()));
     }
 
     public static Message deserialize(String strMessage){
@@ -66,6 +88,13 @@ public class Message implements Serializable{
         }
     }
 
+    public String getHistoryLabel() {
+        return historyLabel;
+    }
+
+    public void setHistoryLabel(String historyLabel) {
+        this.historyLabel = historyLabel;
+    }
 
     public UUID getId() {
         return id;

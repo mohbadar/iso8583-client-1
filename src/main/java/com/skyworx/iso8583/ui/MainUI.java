@@ -1,6 +1,10 @@
 package com.skyworx.iso8583.ui;
 
+import com.google.common.eventbus.Subscribe;
+import com.skyworx.iso8583.EventBus;
 import com.skyworx.iso8583.domain.Message;
+import com.skyworx.iso8583.domain.MessageHistoryCreated;
+import com.skyworx.iso8583.domain.MessageSaved;
 import com.skyworx.iso8583.repository.MessageRepository;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -26,8 +30,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MainUI {
-    private final MessageRepository messageRepository = MessageRepository.getInstance();
-    public ListView<Message> messageList;
+    public TableView<Message> messageList;
     private ObjectProperty<Message> messageProperty = new SimpleObjectProperty<>();
     public ComboBox<String> muxList;
     public TextField newMessage;
@@ -36,8 +39,7 @@ public class MainUI {
     public VBox selectedMessageContainer;
 
     public void initialize(){
-        reloadMuxList();
-
+        EventBus.register(this);
 
         messageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         messageList.setItems(FXCollections.observableList(Message.findAll()));
@@ -45,17 +47,13 @@ public class MainUI {
             messageProperty.set(newValue);
         });
 
-        messageProperty.addListener((observable, oldValue, newValue) -> {
+        attachSelectedMessageUI();
+    }
 
-            if(newValue != null){
-                VBox vBox = SelectedMessageUI.create(newValue);
-                selectedMessageContainer.getChildren().clear();
-                selectedMessageContainer.getChildren().add(vBox);
-            }
-        });
-
-
-
+    public void attachSelectedMessageUI(){
+        VBox vBox = SelectedMessageUI.create(this.messageProperty);
+        selectedMessageContainer.getChildren().clear();
+        selectedMessageContainer.getChildren().add(vBox);
     }
 
     public void saveMessage(ActionEvent actionEvent) {
@@ -121,5 +119,15 @@ public class MainUI {
 
     private void showAlert(String contentText) {
         new Alert(Alert.AlertType.ERROR, contentText).show();
+    }
+
+    @Subscribe
+    public void handleMessageSave(MessageSaved event){
+
+    }
+
+    @Subscribe
+    public void handleMessageHistory(MessageHistoryCreated event){
+
     }
 }

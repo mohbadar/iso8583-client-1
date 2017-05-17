@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<VBox
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="com.skyworx.iso8583.ui.SelectedMessageUI">
-    <TextField fx:id="selectedMessageName" promptText="Nama Message"/>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skyworx.iso8583.ui.SelectedMessageUI">
+   <TextField promptText="MTI" fx:id="mtiField" />
     <TableView fx:id="messageEditTable">
         <columns>
             <TableColumn prefWidth="96.14288330078125" text="Bit">
                 <cellValueFactory>
-                    <PropertyValueFactory property="bit"/>
+                    <PropertyValueFactory property="bit" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="101.85711669921875" text="Value">
                 <cellValueFactory>
-                    <PropertyValueFactory property="value"/>
+                    <PropertyValueFactory property="value" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
     </TableView>
     <HBox prefWidth="200.0">
-        <TextField promptText="Bit" fx:id="bitField"/>
-        <TextField fx:id="valueField" promptText="Value"/>
-        <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="+"/>
-        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="-"/>
+        <TextField fx:id="bitField" promptText="Bit" />
+        <TextField fx:id="valueField" promptText="Value" />
+        <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="+" />
+        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="-" />
+    </HBox>
+    <HBox>
+        <TextField fx:id="messageName" promptText="Nama Message"/>
+        <Button mnemonicParsing="false" onAction="#saveMessage" text="Save as Template"/>
     </HBox>
 </VBox>

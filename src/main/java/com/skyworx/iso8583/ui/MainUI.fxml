@@ -25,24 +25,25 @@
    <Label style="-fx-font: NORMAL 20 Tahoma;" text="ISO Message" GridPane.rowIndex="0">
    </Label>
    <VBox GridPane.rowIndex="1" GridPane.rowSpan="2">
-      <children>
-         <Label text="Mux" />
-         <HBox>
-            <children>
-               <ComboBox fx:id="muxList" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-               <Button mnemonicParsing="false" onAction="#reloadMuxList" text="Reload" />
-            </children>
-         </HBox>
-         <ListView fx:id="messageList">
-   </ListView>
-         <HBox>
-            <children>
-               <TextField fx:id="newMessage" promptText="Name" />
-               <TextField promptText="MTI" fx:id="newMti" />
-               <Button mnemonicParsing="false" onAction="#addNewMessage" text="Add" />
-            </children>
-         </HBox>
-      </children>
+      <Label text="Mux"/>
+      <HBox>
+         <ComboBox fx:id="muxList" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+         <Button mnemonicParsing="false" onAction="#reloadMuxList" text="Reload"/>
+      </HBox>
+      <TableView fx:id="messageList">
+         <columns>
+            <TableColumn text="Template Name">
+               <cellValueFactory>
+                  <PropertyValueFactory property="name" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+      <HBox>
+         <TextField fx:id="newMessage" promptText="Name"/>
+         <TextField promptText="MTI" fx:id="newMti"/>
+         <Button mnemonicParsing="false" onAction="#addNewMessage" text="Add"/>
+      </HBox>
    </VBox>
 
    <!-- Column 2 -->
