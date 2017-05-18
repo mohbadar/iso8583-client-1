@@ -5,7 +5,9 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -24,45 +26,69 @@
    <!-- Column 1 -->
    <Label style="-fx-font: NORMAL 20 Tahoma;" text="ISO Message" GridPane.rowIndex="0">
    </Label>
-   <VBox GridPane.rowIndex="1" GridPane.rowSpan="2">
-      <Label text="Mux"/>
-      <HBox>
-         <ComboBox fx:id="muxList" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
-         <Button mnemonicParsing="false" onAction="#reloadMuxList" text="Reload"/>
-      </HBox>
-      <TableView fx:id="messageList">
-         <columns>
-            <TableColumn text="Template Name">
-               <cellValueFactory>
-                  <PropertyValueFactory property="name" />
-               </cellValueFactory>
-            </TableColumn>
-         </columns>
-      </TableView>
-      <HBox>
-         <TextField fx:id="newMessage" promptText="Name"/>
-         <TextField promptText="MTI" fx:id="newMti"/>
-         <Button mnemonicParsing="false" onAction="#addNewMessage" text="Add"/>
-      </HBox>
-   </VBox>
+   <TabPane GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <tabs>
+         <Tab closable="false" text="History">
+            <VBox>
+               <TableView fx:id="historyList">
+                  <columns>
+                     <TableColumn text="Location">
+                        <cellValueFactory>
+                           <PropertyValueFactory property="historyLabel" />
+                        </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn text="MTI">
+                        <cellValueFactory>
+                           <PropertyValueFactory property="mti" />
+                        </cellValueFactory>
+                     </TableColumn>
+                  </columns>
+               </TableView>
+            </VBox>
+         </Tab>
+         <Tab closable="false" text="Template">
+            <VBox>
+               <TableView fx:id="messageList">
+                  <columns>
+                     <TableColumn text="Template Name">
+                        <cellValueFactory>
+                           <PropertyValueFactory property="name"/>
+                        </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn text="MTI">
+                        <cellValueFactory>
+                           <PropertyValueFactory property="mti"/>
+                        </cellValueFactory>
+                     </TableColumn>
+                  </columns>
+               </TableView>
+               <HBox>
+                  <Button mnemonicParsing="false" onAction="#removeMessage" text="Remove"/>
+               </HBox>
+            </VBox>
+         </Tab>
+      </tabs>
+   </TabPane>
 
    <!-- Column 2 -->
    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Message Detail" GridPane.columnIndex="1" GridPane.rowIndex="0">
    </Label>
-   <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="selectedMessageContainer">
+   <VBox fx:id="selectedMessageContainer" GridPane.columnIndex="1" GridPane.rowIndex="1">
    </VBox>
-   <ButtonBar GridPane.columnIndex="1" GridPane.rowIndex="2">
-      <buttons>
-         <Button onAction="#removeMessage" text="Remove Message" />
-         <Button onAction="#saveMessage" text="Save Message" />
-         <Button mnemonicParsing="false" onAction="#kirimPesan" text="Kirim" />
-      </buttons>
-   </ButtonBar>
-
-   <VBox GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+   <VBox GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
       <Label text="Console" />
       <TextArea fx:id="consoleArea" />
    </VBox>
+   <HBox prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <ComboBox prefWidth="150.0" promptText="- Server -" fx:id="cbServerProfiles"/>
+      <Button fx:id="connectButton" onAction="#toggleServerConnection" mnemonicParsing="false" text="Connect">
+         <HBox.margin>
+            <Insets left="4.0"/>
+         </HBox.margin>
+      </Button>
+      <Separator maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+      <Button mnemonicParsing="false" onAction="#kirimPesan" text="Send"/>
+   </HBox>
    <columnConstraints>
       <ColumnConstraints hgrow="NEVER" />
       <ColumnConstraints hgrow="ALWAYS" />
@@ -71,6 +97,7 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints />
    </rowConstraints>
 </GridPane>

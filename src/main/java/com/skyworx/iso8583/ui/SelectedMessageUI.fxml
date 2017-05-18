@@ -25,13 +25,15 @@
         </columns>
     </TableView>
     <HBox prefWidth="200.0">
-        <TextField fx:id="bitField" promptText="Bit" />
+        <TextField prefWidth="40" fx:id="bitField" promptText="Bit" />
         <TextField fx:id="valueField" promptText="Value" />
         <Button mnemonicParsing="false" onAction="#saveSelectedBitMessage" text="+" />
-        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="-" />
+        <Button mnemonicParsing="false" onAction="#removeSelectedBitMessage" text="-" />
+        <Button mnemonicParsing="false" onAction="#clearSelectedBitMessage" text="Clear" />
     </HBox>
     <HBox>
         <TextField fx:id="messageName" promptText="Nama Message"/>
         <Button mnemonicParsing="false" onAction="#saveMessage" text="Save as Template"/>
+        <Button mnemonicParsing="false" onAction="#newMessage" text="New Message"/>
     </HBox>
 </VBox>

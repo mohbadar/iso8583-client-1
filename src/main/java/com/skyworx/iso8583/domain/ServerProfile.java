@@ -115,6 +115,11 @@ public class ServerProfile {
         return channel;
     }
 
+    @Override
+    public String toString() {
+        return this.getName()+"("+this.getHost()+":"+this.getPort()+","+this.getChannel().name()+")";
+    }
+
     public String getGenericFileName() {
         return genericFileName.get();
     }

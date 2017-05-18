@@ -25,6 +25,7 @@ public class MainApplication extends Application{
         primaryStage.setOnCloseRequest(event -> {
             Q_2.stop();
             primaryStage.close();
+            System.exit(0);
         });
     }
 

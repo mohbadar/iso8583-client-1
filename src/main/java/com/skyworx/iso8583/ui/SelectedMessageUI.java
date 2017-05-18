@@ -38,7 +38,7 @@ public class SelectedMessageUI {
     public void bind(Message oldMessage, Message newMessage){
         if(oldMessage != null){
             this.messageName.textProperty().unbindBidirectional(oldMessage.nameProperty());
-            this.mtiField.textProperty().bindBidirectional(oldMessage.mtiProperty());
+            this.mtiField.textProperty().unbindBidirectional(oldMessage.mtiProperty());
         }
 
         if(newMessage != null){
@@ -47,6 +47,14 @@ public class SelectedMessageUI {
             this.messageEditTable.setItems(newMessage.bits());
         }
 
+        this.selectedBitMessage.set(new Message.BitMessage());
+    }
+
+    private void initData(ObjectProperty<Message> message){
+        this.selectedMessage.bindBidirectional(message);
+        this.selectedMessage.addListener((observable, oldValue, newValue) -> {
+            bind(oldValue, newValue);
+        });
 
         this.selectedBitMessage.addListener((observable, oldValue, newValue) -> {
             if(oldValue != null){
@@ -65,13 +73,6 @@ public class SelectedMessageUI {
         });
     }
 
-    private void initData(ObjectProperty<Message> message){
-        this.selectedMessage.bindBidirectional(message);
-        this.selectedMessage.addListener((observable, oldValue, newValue) -> {
-            bind(oldValue, newValue);
-        });
-    }
-
     public void clearSelectedBitMessage(ActionEvent actionEvent) {
         this.selectedBitMessage.set(new Message.BitMessage());
     }
@@ -80,6 +81,7 @@ public class SelectedMessageUI {
         Message.BitMessage bitMessage = this.selectedBitMessage.get();
         if(!messageEditTable.getItems().contains(bitMessage)){
             messageEditTable.getItems().add(bitMessage);
+            this.selectedBitMessage.set(new Message.BitMessage());
         }
     }
 
@@ -88,5 +90,15 @@ public class SelectedMessageUI {
         if (message != null) {
             message.save();
         }
+    }
+
+    public void removeSelectedBitMessage(ActionEvent actionEvent) {
+        Message.BitMessage bitMessage = this.selectedBitMessage.get();
+        this.messageEditTable.getItems().remove(bitMessage);
+        this.selectedBitMessage.set(new Message.BitMessage());
+    }
+
+    public void newMessage(ActionEvent actionEvent) {
+        this.selectedMessage.set(new Message());
     }
 }

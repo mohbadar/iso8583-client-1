@@ -23,6 +23,7 @@ public class Message implements Serializable{
     public static final HTreeMap<UUID,String> MESSAGES = db.hashMap(MESSAGES_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
     public static final HTreeMap<UUID,String> HISTORIES = db.hashMap(HISTORIES_NAME, Serializer.UUID, Serializer.STRING).createOrOpen();
     private UUID id;
+    private UUID historyId;
     private StringProperty name = new SimpleStringProperty();
     private ObservableList<BitMessage> bits = FXCollections.observableArrayList();
     private StringProperty mti = new SimpleStringProperty();
@@ -36,9 +37,12 @@ public class Message implements Serializable{
     public void createHistory(String historyLabel){
         Message copyOfMessage = copy();
         try {
-            HISTORIES.put(UUID.randomUUID(), copyOfMessage.serialize());
+            copyOfMessage.setHistoryId(UUID.randomUUID());
+            copyOfMessage.setId(null);
+            copyOfMessage.setHistoryLabel(historyLabel);
+            HISTORIES.put(copyOfMessage.getHistoryId(), copyOfMessage.serialize());
             db.commit();
-            EventBus.post(new MessageHistoryCreated(this));
+            EventBus.post(new MessageHistoryCreated(copyOfMessage));
         }catch (Exception e){
             db.rollback();
             throw new RuntimeException("Unhandled Exception", e);
@@ -47,13 +51,15 @@ public class Message implements Serializable{
 
     public void save(){
         try {
+            boolean isNew = false;
             if(this.id == null){
                 this.id = UUID.randomUUID();
+                isNew = true;
             }
             this.setHistoryLabel(null);
             MESSAGES.put(this.id, this.serialize());
             db.commit();
-            EventBus.post(new MessageSaved(this));
+            EventBus.post(new MessageSaved(this, isNew));
         }catch (Exception e){
             db.rollback();
             throw new RuntimeException("Unhandled Exception", e);
@@ -68,6 +74,10 @@ public class Message implements Serializable{
 
     public static List<Message> findAll(){
         return new ArrayList<>(MESSAGES.getValues().stream().map(Message::deserialize).collect(Collectors.toList()));
+    }
+
+    public static List<Message> findAllHistories(){
+        return new ArrayList<>(HISTORIES.getValues().stream().map(Message::deserialize).collect(Collectors.toList()));
     }
 
     public static Message deserialize(String strMessage){
@@ -158,6 +168,14 @@ public class Message implements Serializable{
 
     public void setMti(String mti) {
         this.mti.set(mti);
+    }
+
+    public UUID getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(UUID historyId) {
+        this.historyId = historyId;
     }
 
     public static class BitMessage implements Serializable{
