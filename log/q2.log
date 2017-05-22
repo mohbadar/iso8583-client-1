@@ -15516,3 +15516,496 @@ q9ulRPEqH9NR79619lNKVUkE206dVlXo7xHmJS1QZy5v/GT66xBxyDVfTduPFXk=
     Try 0 localhost:10000
   </connect>
 </log>
+<log realm="simulator_10000.server.session/127.0.0.1:57798" at="2017-05-22T22:00:30.129">
+  <session-start/>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:34.523" lifespan="4391ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:34.526" lifespan="1ms">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:35.955" lifespan="1427ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:35.958" lifespan="1ms">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:37.069" lifespan="1110ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:37.071">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:37.777" lifespan="705ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:37.781" lifespan="1ms">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:38.393" lifespan="611ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:38.397" lifespan="3ms">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:38.898" lifespan="500ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:38.900">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.270" lifespan="369ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.271">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.604" lifespan="332ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.605" lifespan="1ms">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.795" lifespan="190ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:39.796">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:40.004" lifespan="207ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:40.005">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:40.221" lifespan="215ms">
+  <receive>
+    <isomsg direction="incoming">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0800"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:40.222">
+  <send>
+    <isomsg direction="outgoing">
+      <!-- org.jpos.iso.packager.ISO87APackager -->
+      <field id="0" value="0810"/>
+      <field id="3" value="222222"/>
+      <field id="11" value="200000"/>
+    </isomsg>
+  </send>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.223">
+  <info>
+    shutting down
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.224">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\99_sysmon.xml
+  </trace>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="2017-05-22T22:00:45.225">
+  <info>
+    Stopping SystemMonitor
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.226">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\99_sysmon.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.228">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\02_mux.xml
+  </trace>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.230">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\02_mux.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.231">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\01_channel.xml
+  </trace>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.233">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\01_channel.xml
+  </info>
+</log>
+<log realm="channel/127.0.0.1:57789" at="2017-05-22T22:00:45.234" lifespan="98865ms">
+  <receive>
+    <peer-disconnect/>
+  </receive>
+</log>
+<log realm="channel/127.0.0.1:10000" at="2017-05-22T22:00:45.234" lifespan="98861ms">
+  <receive/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.234">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\11_server.xml
+  </trace>
+</log>
+<log realm="simulator_10000.server.session/127.0.0.1:57789" at="2017-05-22T22:00:45.235">
+  <session-end/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.237">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\11_server.xml
+  </info>
+</log>
+<log realm="simulator_10000.pool" at="2017-05-22T22:00:45.238">
+  <queue closed/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:00:45.238">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\00_logger.xml
+  </trace>
+</log>
+<log realm="channel/127.0.0.1:57798" at="2017-05-22T22:00:45.240" lifespan="5017ms">
+  <receive/>
+</log>
+</logger>
+<?xml version="1.0" encoding="UTF-8"?>
+<logger class="org.jpos.util.DailyLogListener">
+<log realm="Q2.system" at="2017-05-22T22:11:06.088">
+  <info>
+    Q2 started, deployDir=D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:07.811" lifespan="1703ms">
+  <version>
+    jPOS 2.0.10 master/b78e87f (2017-01-01 21:01:18 ART) 
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+jPOS Community Edition, licensed under GNU AGPL v3.0.
+This software is probably not suitable for commercial use.
+Please see http://jpos.org/license for details.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (Darwin)
+
+iQEcBAEBAgAGBQJMolHDAAoJEOQyeO71nYtFv74H/3OgehDGEy1VXp2U3/GcAobg
+HH2eZjPUz53r38ARPiU3pzm9LwDa3WZgJJaa/b9VrJwKvbPwe9+0kY3gScDE1skT
+ladHt+KHHmGQArEutkzHlpZa73RbroFEIa1qmN6MaDEHGoxZqDh0Sv2cpvOaVYGO
+St8ZaddLBPC17bSjAPWo9sWbvL7FgPFOHhnPmbeux8SLtnfWxXWsgo5hLBanKmO1
+1z+I/w/6DL6ZYZU6bAJUk+eyVVImJqw0x3IEElI07Nh9MC6BA4iJ77ejobj8HI2r
+q9ulRPEqH9NR79619lNKVUkE206dVlXo7xHmJS1QZy5v/GT66xBxyDVfTduPFXk=
+=oP+v
+-----END PGP SIGNATURE-----
+
+  </version>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:07.830" lifespan="8ms">
+  <info>
+    deploy: D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\11_server.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:07.841" lifespan="10ms">
+  <info>
+    deploy: D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\01_channel.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:07.872" lifespan="31ms">
+  <info>
+    deploy: D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\02_mux.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:07.878" lifespan="5ms">
+  <info>
+    deploy: D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\99_sysmon.xml
+  </info>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="2017-05-22T22:11:07.915">
+  <info>
+    Starting SystemMonitor
+  </info>
+</log>
+<log realm="simulator_10000.server" at="2017-05-22T22:11:07.918">
+  <iso-server>
+    listening on port 10000
+  </iso-server>
+</log>
+<log realm="simulator_10000.server.session/127.0.0.1:57915" at="2017-05-22T22:11:08.072" lifespan="142ms">
+  <session-start/>
+</log>
+<log realm="channel/127.0.0.1:10000" at="2017-05-22T22:11:08.076" lifespan="157ms">
+  <connect>
+    Try 0 localhost:10000
+  </connect>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="2017-05-22T22:11:07.921">
+  <info>
+               OS: Windows 10 (10.0)
+     process name: 11520@DESKTOP-RG82DPD
+             host: DESKTOP-RG82DPD/192.168.8.104
+              cwd: D:\Projects\Bustanil\Osaka\iso8583-clientapp
+       free space: 92.6 GiB
+          version: 2.0.10 (b78e87f)
+         instance: f25839e3-5457-4e1b-806d-42f86a3d8922
+           uptime: 00:00:02.404 (-1.000000)
+       processors: 4
+           drift : 0
+    memory(t/u/f): 135/30/104
+         encoding: UTF-8
+         timezone: Asia/Bangkok (Indochina Time) +07:00
+    watch service: sun.nio.fs.WindowsWatchService
+            clock: 1495465868 2017-05-22T15:11:07.925Z
+     thread count: 20
+     peak threads: 20
+     user threads: 16
+            Thread[Reference Handler,10,system]
+            Thread[Finalizer,8,system]
+            Thread[Signal Dispatcher,9,system]
+            Thread[Attach Listener,5,system]
+            Thread[main,5,main]
+            Thread[Monitor Ctrl-Break,5,main]
+            Thread[JavaFX-Launcher,5,main]
+            Thread[QuantumRenderer-0,5,main]
+            Thread[Thread-2,5,main]
+            Thread[JavaFX Application Thread,5,main]
+            Thread[Thread-3,5,main]
+            Thread[pool-2-thread-1,5,main]
+            Thread[Q2-f25839e3-5457-4e1b-806d-42f86a3d8922,5,main]
+            Thread[Thread-5,5,main]
+            Thread[Timer-0,5,main]
+            Thread[Thread-8,5,main]
+            Thread[channel-sender-sample.incoming,5,main]
+            Thread[channel-receiver-sample.outgoing,5,main]
+            Thread[SystemMonitor,5,main]
+            Thread[simulator_10000-ThreadPool.PooledThread-0-running,5,simulator_10000-ThreadPool-0]
+    name-registrar:
+      tspace:default: org.jpos.space.TSpace
+         key-count: 0
+            gcinfo: 0,0
+      Q2: org.jpos.q2.Q2
+      simulator_10000: org.jpos.q2.iso.QServer
+      channel.sample-adapter: org.jpos.iso.channel.ASCIIChannel
+      logger.Q2: org.jpos.util.Logger
+      sample-adapter: org.jpos.q2.iso.ChannelAdaptor
+        tx=0, rx=0, connects=0, last=0
+      server.simulator_10000: org.jpos.iso.ISOServer
+        connected=1, rx=0, tx=0, last=0
+          127.0.0.1:57915: rx=0, tx=0, last=0
+      mux.sample-mux: org.jpos.q2.iso.QMUX
+        tx=0, rx=0, tx_expired=0, tx_pending=0, rx_expired=0, rx_pending=0, rx_unhandled=0, rx_forwarded=0, connected=false, last=0
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.727">
+  <info>
+    shutting down
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.728">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\99_sysmon.xml
+  </trace>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="2017-05-22T22:11:12.728">
+  <info>
+    Stopping SystemMonitor
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.729">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\99_sysmon.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.730">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\02_mux.xml
+  </trace>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.733">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\02_mux.xml
+  </info>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.734">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\01_channel.xml
+  </trace>
+</log>
+<log realm="channel/127.0.0.1:10000" at="2017-05-22T22:11:12.737" lifespan="4660ms">
+  <receive/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.737">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\50_mux-sample\01_channel.xml
+  </info>
+</log>
+<log realm="channel/127.0.0.1:57915" at="2017-05-22T22:11:12.738" lifespan="4666ms">
+  <receive>
+    <peer-disconnect/>
+  </receive>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.738">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\11_server.xml
+  </trace>
+</log>
+<log realm="simulator_10000.server.session/127.0.0.1:57915" at="2017-05-22T22:11:12.739">
+  <session-end/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.741">
+  <info>
+    undeployed:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\11_server.xml
+  </info>
+</log>
+<log realm="simulator_10000.pool" at="2017-05-22T22:11:12.742">
+  <queue closed/>
+</log>
+<log realm="Q2.system" at="2017-05-22T22:11:12.743">
+  <trace>
+    undeploying:D:\Projects\Bustanil\Osaka\iso8583-clientapp\q2-deployment\00_logger.xml
+  </trace>
+</log>
+</logger>
