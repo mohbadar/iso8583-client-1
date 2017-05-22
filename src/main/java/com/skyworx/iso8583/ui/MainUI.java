@@ -2,10 +2,7 @@ package com.skyworx.iso8583.ui;
 
 import com.google.common.eventbus.Subscribe;
 import com.skyworx.iso8583.EventBus;
-import com.skyworx.iso8583.domain.Message;
-import com.skyworx.iso8583.domain.MessageHistoryCreated;
-import com.skyworx.iso8583.domain.MessageSaved;
-import com.skyworx.iso8583.domain.ServerProfile;
+import com.skyworx.iso8583.domain.*;
 import com.skyworx.iso8583.repository.MessageRepository;
 import javafx.application.Platform;
 import javafx.beans.property.*;
@@ -36,6 +33,8 @@ public class MainUI {
     public TableView<Message> historyList;
     public ComboBox<ServerProfile> cbServerProfiles;
     public Button connectButton;
+    public MenuItem settingMenu;
+    public Button btnSend;
 
     private ObjectProperty<Message> messageProperty = new SimpleObjectProperty<>();
     public TextArea consoleArea;
@@ -74,19 +73,15 @@ public class MainUI {
             disableBtnConnect.set(newValue == null);
         });
 
+        settingMenu.disableProperty().bind(cbServerProfiles.disableProperty());
+        btnSend.disableProperty().bind(cbServerProfiles.disableProperty().not());
         selectedServerProfileProperty.bind(cbServerProfiles.getSelectionModel().selectedItemProperty());
     }
 
     public void loadServerProfiles(){
         cbServerProfiles.setItems(null);
         serverProfiles.clear();
-        ServerProfile serverProfile = new ServerProfile();
-        serverProfile.setName("Sample");
-        serverProfile.setChannel(ServerProfile.Channel.ASCII);
-        serverProfile.setPackager(ServerProfile.Packager.ISO_1987_ASCII);
-        serverProfile.setHost("localhost");
-        serverProfile.setPort(10000);
-        serverProfiles.add(serverProfile);
+        serverProfiles.addAll(ServerProfile.findAll());
         cbServerProfiles.setItems(serverProfiles);
     }
 
@@ -142,9 +137,15 @@ public class MainUI {
 
     @Subscribe
     public void handleMessageHistory(MessageHistoryCreated event){
-        historyList.getItems().add(0,event.getMessage());
+        Platform.runLater(() -> {
+            historyList.getItems().add(0,event.getMessage());
+        });
     }
 
+    @Subscribe
+    public void handleSettingClosed(ServerSettingClosed event){
+        Platform.runLater(this::loadServerProfiles);
+    }
     public void toggleServerConnection(ActionEvent actionEvent) {
         try {
             if(this.mux != null){
@@ -206,8 +207,17 @@ public class MainUI {
                     }
                 }).start();
             }
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             e.printStackTrace();
+            showAlert("Error connecting to server, cause by: "+e.getMessage());
         }
+    }
+
+    public void openSettings(ActionEvent actionEvent) {
+        ServerProfileUI.show();
+    }
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(1);
     }
 }

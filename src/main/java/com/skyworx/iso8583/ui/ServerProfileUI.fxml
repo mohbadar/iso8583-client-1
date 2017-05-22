@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skyworx.iso8583.ui.ServerProfileUI">
+    <VBox>
+        <TableView fx:id="tableProfiles" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Host">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="host" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Port">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="port" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+            <buttons>
+                <Button mnemonicParsing="false" onAction="#removeSelected" text="Remove" />
+                <Button mnemonicParsing="false" onAction="#addNew" text="Add" />
+            </buttons>
+        </ButtonBar>
+    </VBox>
+    <VBox HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+        <Label text="Server Setting">
+           <font>
+               <Font size="20.0" />
+           </font>
+        </Label>
+        <Separator prefWidth="200.0" />
+        <Label text="Profile Name" />
+        <TextField fx:id="txtName" promptText="Profile Name">
+           <VBox.margin>
+               <Insets bottom="10.0" />
+           </VBox.margin>
+        </TextField>
+        <Label text="Host" />
+        <HBox prefWidth="200.0">
+            <VBox.margin>
+                <Insets bottom="10.0" />
+            </VBox.margin>
+            <TextField fx:id="txtHost" promptText="Host" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtPort" prefHeight="25.0" prefWidth="50.0" promptText="Port" />
+        </HBox>
+        <Label text="Channel" />
+      <HBox>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <children>
+              <ChoiceBox fx:id="cbChannel" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets right="4.0" />
+               </HBox.margin>
+              </ChoiceBox>
+            <TextField promptText="Header" fx:id="txtHeader" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+        <Label text="Packager" />
+        <ChoiceBox fx:id="cbPackager" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+           <VBox.margin>
+               <Insets bottom="10.0" />
+           </VBox.margin>
+        </ChoiceBox>
+        <Label text="Generic Xml Name" />
+        <TextField fx:id="txtGeneric" promptText="e.g, ISO87APackager.xml">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></TextField>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#saveSelected" text="Save" />
+            <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+        </buttons>
+      </ButtonBar>
+    </VBox>
+
+</HBox>

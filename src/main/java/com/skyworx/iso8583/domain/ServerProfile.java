@@ -6,6 +6,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jpos.iso.BaseChannel;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOPackager;
@@ -46,8 +47,18 @@ public class ServerProfile {
     private ObjectProperty<Packager> packager = new SimpleObjectProperty<>();
     private ObjectProperty<Channel> channel = new SimpleObjectProperty<>();
     private StringProperty genericFileName = new SimpleStringProperty();
+    private StringProperty channelHeader = new SimpleStringProperty();
 
+    public void update(ServerProfile newProfile){
+        this.setName(newProfile.getName());
+        this.setChannel(newProfile.getChannel());
+        this.setPackager(newProfile.getPackager());
+        this.setGenericFileName(newProfile.getGenericFileName());
+        this.setPort(newProfile.getPort());
+        this.setHost(newProfile.getHost());
+    }
     public void save(){
+        assert getName() != null && !"".equals(getName());
         try {
             if(this.id == null){
                 this.id = UUID.randomUUID();
@@ -66,8 +77,8 @@ public class ServerProfile {
         db.commit();
     }
 
-    public static List<Message> findAll(){
-        return new ArrayList<>(COLLECTION.getValues().stream().map(Message::deserialize).collect(Collectors.toList()));
+    public static List<ServerProfile> findAll(){
+        return new ArrayList<>(COLLECTION.getValues().stream().map(ServerProfile::deserialize).collect(Collectors.toList()));
     }
 
     public ISOPackager isoPackager(){
@@ -97,6 +108,10 @@ public class ServerProfile {
         return profile;
     }
 
+    public ServerProfile copy(){
+        return ServerProfile.deserialize(this.serialize());
+    }
+
     public String serialize(){
         try {
             return om.writeValueAsString(this);
@@ -108,16 +123,54 @@ public class ServerProfile {
     public BaseChannel createChannel() throws IOException {
         BaseChannel channel = null;
         switch (this.getChannel()){
-            case ASCII:channel = new ASCIIChannel(this.getHost(),this.getPort(), this.isoPackager()); break;
-            case BCD:channel = new BCDChannel(this.getHost(),this.getPort(), this.isoPackager(),new byte[2]);break;
-            case NAC:channel = new NACChannel(this.getHost(),this.getPort(), this.isoPackager(),new byte[2]);break;
+            case ASCII:channel = createAsciiChannel(); break;
+            case BCD:channel = createBcdChannel();break;
+            case NAC:channel = createNacChannel();break;
+        }
+        if(getChannelHeader() != null && !"".equals(getChannelHeader())){
+            channel.setHeader(getChannelHeader());
         }
         return channel;
     }
 
+    @NotNull
+    private NACChannel createNacChannel() {
+        return new NACChannel(this.getHost(), this.getPort(), this.isoPackager(), new byte[2]);
+    }
+
+    @NotNull
+    private BCDChannel createBcdChannel() {
+        return new BCDChannel(this.getHost(),this.getPort(), this.isoPackager(),new byte[2]);
+    }
+
+    @NotNull
+    private ASCIIChannel createAsciiChannel() {
+        return new ASCIIChannel(this.getHost(),this.getPort(), this.isoPackager());
+    }
+
     @Override
     public String toString() {
-        return this.getName()+"("+this.getHost()+":"+this.getPort()+","+this.getChannel().name()+")";
+        return this.getName()+"("+this.getHost()+":"+this.getPort()+","+this.getChannel()+")";
+    }
+
+    public String getChannelHeader() {
+        return channelHeader.get();
+    }
+
+    public StringProperty channelHeaderProperty() {
+        return channelHeader;
+    }
+
+    public void setChannelHeader(String channelHeader) {
+        this.channelHeader.set(channelHeader);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getGenericFileName() {

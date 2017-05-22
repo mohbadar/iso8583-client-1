@@ -39,6 +39,7 @@ public class Message implements Serializable{
         try {
             copyOfMessage.setHistoryId(UUID.randomUUID());
             copyOfMessage.setId(null);
+            copyOfMessage.setName(null);
             copyOfMessage.setHistoryLabel(historyLabel);
             HISTORIES.put(copyOfMessage.getHistoryId(), copyOfMessage.serialize());
             db.commit();
